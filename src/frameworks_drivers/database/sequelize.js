@@ -12,13 +12,13 @@ const otpModel = require("./models/Otp");
 //   dialect: "postgres"
 // });
 
-const sequelize = new Sequelize("test", "postgres", "123123test", {
+const sequelize = new Sequelize("postgres", "postgres", "password", {
   define: {
     freezeTableName: true,
   },
   // host: "test.crokgck2cajx.ap-south-1.rds.amazonaws.com",
   // host: "103.44.2.28",
-  host:"3.111.10.134",
+  host: "3.111.10.134",
   port: 5432,
   dialect: "postgres",
   pool: {
