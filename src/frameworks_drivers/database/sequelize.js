@@ -19,6 +19,12 @@ const sequelize = new Sequelize("test", "postgres", "123123test", {
   host: "test.crokgck2cajx.ap-south-1.rds.amazonaws.com",
   port: 5432,
   dialect: "postgres",
+  pool: {
+    max: 10,
+    min: 0,
+    acquire: 30000,
+    idle: 10000,
+  },
 });
 
 const Roles = rolesModel(sequelize, Sequelize);
