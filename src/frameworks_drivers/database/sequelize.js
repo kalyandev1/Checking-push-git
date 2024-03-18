@@ -17,6 +17,7 @@ const sequelize = new Sequelize("test", "postgres", "123123test", {
     freezeTableName: true,
   },
   host: "test.crokgck2cajx.ap-south-1.rds.amazonaws.com",
+  // host: "103.44.2.28",
   port: 5432,
   dialect: "postgres",
   pool: {
