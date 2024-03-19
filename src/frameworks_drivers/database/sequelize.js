@@ -12,7 +12,7 @@ const otpModel = require("./models/Otp");
 //   dialect: "postgres"
 // });
 
-const sequelize = new Sequelize("test", "postgres", "123123test", {
+const sequelize = new Sequelize("postgres", "postgres", "password", {
   define: {
     freezeTableName: true,
   },
