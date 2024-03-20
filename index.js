@@ -2,14 +2,14 @@
 const express = require("express");
 const app = express();
 const router = require('express').Router()
-const https = require('https')
+const http = require('http')
 const server = require('./src/frameworks_drivers/server/server')
 const sequelize = require('./src/frameworks_drivers/database/sequelize')
 const cors = require("cors");
 
 const port = process.env.PORT || 5555
 
-let myserver = https.Server(server);
+let myserver = http.Server(server);
 
 app.use(cors('*'));
 

@@ -1,7 +1,7 @@
 const express = require('express')
 const app = express()
 
- const rolesRoutes = require('../../interface_adapters/controllers/RolesController');
+ const usersRoutes = require('../../interface_adapters/controllers/UsersController');
  const otpRoutes = require('../../interface_adapters/controllers/OtpController');
 
 
@@ -22,7 +22,7 @@ app.use((req, res, next) => {
 });
 
 
-app.use('/api/v1/user',rolesRoutes);
+app.use('/api/v1/user',usersRoutes);
 app.use('/api/v1/otp',otpRoutes);
 
 

@@ -5,12 +5,12 @@ const Sequelize = require('sequelize')
 module.exports = class {
     constructor() {
         this.db = sequelize
-        this.model = this.db.model('roles')
+        this.model = this.db.model('users')
     }
 
-    async add(rolesEntity) {
+    async add(Entity) {
         const err = []
-        const { name, mobile, email, password,otp,created_date } = rolesEntity
+        const { name, mobile, email, password,otp,created_date } = Entity
         if (_.isUndefined(name) || _.isNull(name)) err.push("name is required in field 'name'")
         if (err.length > 0) return err
         else {

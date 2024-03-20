@@ -11,12 +11,12 @@ const OtpRepository = require('../../application_business_rules/repositories/Otp
 const otpRepository = new OtpRepository(new OtpRepositoryMySql())
 const otpUseCases = new OtpUseCases()
 
-const RolesUseCases = require('../../application_business_rules/use_cases/RolesUseCases')
-const RolesRepositoryMySql = require('../storage/RolesRepositoryMySql')
-const RolesRepository = require('../../application_business_rules/repositories/RolesRepository')
+const UsersUseCases = require('../../application_business_rules/use_cases/UsersUseCases')
+const UsersRepositoryMySql = require('../storage/UsersRepositoryMySql')
+const UsersRepository = require('../../application_business_rules/repositories/UsersRepository')
 
-const rolesRepository = new RolesRepository(new RolesRepositoryMySql())
-const rolesUseCases = new RolesUseCases()
+const usersRepository = new UsersRepository(new UsersRepositoryMySql())
+const usersUseCases = new UsersUseCases()
 
 
 router.post('/getotp', async (req, res) => {
@@ -24,7 +24,7 @@ router.post('/getotp', async (req, res) => {
 try{
     var {email} = req.body
     var dt = moment().format()
-    var checkemail = await rolesUseCases.checkemail({email}, rolesRepository)
+    var checkemail = await usersUseCases.checkemail({email}, usersRepository)
     if (checkemail.length > 0) {
     res.status(202).json({ status: 202, message: 'Your email already exists'
 })
@@ -46,7 +46,7 @@ try{
            transporter.sendMail({
                from: 'no-reply@evaidya.com',
                to: email, 
-               cc: 'kalyanwd25@gmail.com',
+               cc: 'vamshijustin25@gmail.com',
                subject: `Hello this is testing purpose mail`, 
                text: "Dear user, use this One Time Password " + otp + " This OTP will be valid for the next 10 mins."
            }).then(result => {
@@ -98,20 +98,20 @@ console.log('givenTimestamp')
 
     if (differenceInMinutes <= 10) {
 
-        const result = await rolesUseCases.addRoles({name, mobile, email,password,otp,created_date:dt}, rolesRepository)
+        const result = await usersUseCases.addRoles({name, mobile, email,password,otp,created_date:dt}, usersRepository)
 
         const transporter = nodemailer.createTransport({
             service: 'gmail',
             secure: false,
             auth: {
-                user: 'no-reply@evaidya.com',
-                pass: 'ehealthaccess',
+                user: 'vamshijustin25@gmail.com',
+                pass: 'Vadloori@25',
             },
         });
         transporter.sendMail({
-            from: 'no-reply@evaidya.com',
+            from: 'vamshijustin25@gmail.com',
             to: email, 
-            cc: 'kalyanwd25@gmail.com',
+            cc: 'vamshijustin25@gmail.com',
             subject: `Hello this is testing purpose mail`, 
             text: "Your Registration successfully Completed..!"
         }).then(result => {
@@ -136,11 +136,12 @@ console.log('givenTimestamp')
             message: 'Please enter valid OTP..!',
         })
     }
+
 } catch (err) {
     res.status(500).json({
         status: "500",
         message: "Internal Server Error",
-        error: err.message
+        error: err.message 
     });
 }
 })

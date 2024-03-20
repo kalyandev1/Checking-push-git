@@ -10,12 +10,12 @@ const OtpRepository = require('../../application_business_rules/repositories/Otp
 const otpRepository = new OtpRepository(new OtpRepositoryMySql())
 const otpUseCases = new OtpUseCases()
 
-const RolesUseCases = require('../../application_business_rules/use_cases/RolesUseCases')
-const RolesRepositoryMySql = require('../storage/RolesRepositoryMySql')
-const RolesRepository = require('../../application_business_rules/repositories/RolesRepository')
+const UsersUseCases = require('../../application_business_rules/use_cases/UsersUseCases')
+const UsersRepositoryMySql = require('../storage/UsersRepositoryMySql')
+const UsersRepository = require('../../application_business_rules/repositories/UsersRepository')
 
-const rolesRepository = new RolesRepository(new RolesRepositoryMySql())
-const rolesUseCases = new RolesUseCases()
+const usersRepository = new UsersRepository(new UsersRepositoryMySql())
+const usersUseCases = new UsersUseCases()
 
 
 const jwtKey = "It's a secret"
@@ -24,10 +24,9 @@ const jwtExpirySeconds = 600
 router.post('/requestotp', async (req, res) => {
     const { email} = req.body
     var dt = moment().format()
-
     console.log('kalyan @@')
     try{
-    var checkemail = await rolesUseCases.checkemail({email}, rolesRepository)
+    var checkemail = await usersUseCases.checkemail({email}, usersRepository)
     if (checkemail.length > 0) {
 
         var otp = Math.floor(Math.random() * 100000);
@@ -113,7 +112,6 @@ router.get('/userotplogin/:otp', async (req, res) => {
                 subject: `Hello this is testing purpose mail`, 
                 text: "You are successfully logged in..!"
             }).then(result => {
-               
             }).catch(err => {
                 console.log(err);
                 return res.status(400).json({
@@ -123,7 +121,7 @@ router.get('/userotplogin/:otp', async (req, res) => {
             })
 
             var email =result[0].email
-            var userres = await rolesUseCases.checkemail({email}, rolesRepository)
+            var userres = await usersUseCases.checkemail({email}, usersRepository)
 
             const token = jwt.sign({ userres }, jwtKey, {
                 algorithm: "HS256",
@@ -156,5 +154,6 @@ router.get('/userotplogin/:otp', async (req, res) => {
     });
 }
 })
+
 
 module.exports = router

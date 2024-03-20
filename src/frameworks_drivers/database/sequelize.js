@@ -1,13 +1,13 @@
 const Sequelize = require("sequelize");
 
-const rolesModel = require("./models/Roles");
+const usersModel = require("./models/Users");
 const otpModel = require("./models/Otp");
 
-// const sequelize = new Sequelize("newsapp", "postgres", "Arun6004", {
+// const sequelize = new Sequelize("newapp", "postgres", "Arun6004", {
 //    define: {
 //     freezeTableName: true
 //    },
-//   host: "arun.czu4oxaeuviz.ap-south-1.rds.amazonaws.com",
+//   host: "arun.czu4oxaeiz.ap-south-1.rds.amazonaws.com",
 //   port: 5432,
 //   dialect: "postgres"
 // });
@@ -17,7 +17,6 @@ const sequelize = new Sequelize("postgres", "postgres", "password", {
     freezeTableName: true,
   },
   // host: "test.crokgck2cajx.ap-south-1.rds.amazonaws.com",
-  // host: "103.44.2.28",
   host: "3.111.10.134",
   port: 5432,
   dialect: "postgres",
@@ -29,6 +28,6 @@ const sequelize = new Sequelize("postgres", "postgres", "password", {
   },
 });
 
-const Roles = rolesModel(sequelize, Sequelize);
+const Users = usersModel(sequelize, Sequelize);
 const Otp = otpModel(sequelize, Sequelize);
 module.exports = sequelize;
