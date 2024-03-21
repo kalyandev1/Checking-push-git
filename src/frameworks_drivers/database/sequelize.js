@@ -2,22 +2,12 @@ const Sequelize = require("sequelize");
 
 const usersModel = require("./models/Users");
 const otpModel = require("./models/Otp");
+const sequelize = new Sequelize("metalokdb", "postgres", "password", {
 
-// const sequelize = new Sequelize("newapp", "postgres", "Arun6004", {
-//    define: {
-//     freezeTableName: true
-//    },
-//   host: "arun.czu4oxaeiz.ap-south-1.rds.amazonaws.com",
-//   port: 5432,
-//   dialect: "postgres"
-// });
-
-const sequelize = new Sequelize("postgres", "postgres", "password", {
   define: {
     freezeTableName: true,
   },
-  // host: "test.crokgck2cajx.ap-south-1.rds.amazonaws.com",
-  host: "3.111.10.134",
+  host:"3.111.10.134",
   port: 5432,
   dialect: "postgres",
   pool: {
