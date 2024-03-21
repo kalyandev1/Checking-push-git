@@ -28,4 +28,3 @@ try {
 } catch (error) {
     console.log('failed to start the server')
 }
-
