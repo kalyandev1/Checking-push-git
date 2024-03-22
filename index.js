@@ -12,6 +12,16 @@ const port = process.env.PORT || 3003
 let myserver = http.Server(server);
 
 app.use(cors('*'));
+app.get('/',(req,res)=>{
+    res.send(`<html>
+    <body>
+        <h1 style="color:blue;text-align: center;margin-top: 100px;"> [Version : This is AMAZING!!! Like & Subscribe!</h1>
+        <div style="position: fixed;top: 50%;left: 50%;transform: translate(-50%, -50%)">
+        <h1>hello world</h1>
+        </div>
+    </body>
+   </html>`);
+})
 
 try {
     ("step1")
