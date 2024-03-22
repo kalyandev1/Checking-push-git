@@ -7,7 +7,7 @@ const server = require('./src/frameworks_drivers/server/server')
 const sequelize = require('./src/frameworks_drivers/database/sequelize')
 const cors = require("cors");
 
-const port = process.env.PORT || 5555
+const port = process.env.PORT || 3003
 
 let myserver = http.Server(server);
 
@@ -28,3 +28,4 @@ try {
 } catch (error) {
     console.log('failed to start the server')
 }
+

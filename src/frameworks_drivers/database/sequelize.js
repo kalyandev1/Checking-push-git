@@ -10,12 +10,15 @@ const sequelize = new Sequelize("metalokdb", "postgres", "password", {
   host:"3.111.10.134",
   port: 5432,
   dialect: "postgres",
+
   pool: {
     max: 10,
     min: 0,
     acquire: 30000,
     idle: 10000,
   },
+
+
 });
 
 const Users = usersModel(sequelize, Sequelize);
